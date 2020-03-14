@@ -15,8 +15,7 @@ public class TestDemo2 {
             array[i] = scan.nextInt();
         }
         //int[] array = {1,2,3,4,5};
-        int ret = avg(array);
-        System.out.println(ret);
+        System.out.println(avg(array));
     }
 }
 
