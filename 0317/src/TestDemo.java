@@ -1,5 +1,4 @@
 import java.util.Arrays;
-//数组逆置
 public class TestDemo {
     public static void reverse(int[] array) {
         int left = 0;
