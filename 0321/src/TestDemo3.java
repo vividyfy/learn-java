@@ -30,6 +30,7 @@ class Calculator {
     }
 
     public void setNum2(double num2) {
+
         this.num2 = num2;
     }
 }
