@@ -108,7 +108,6 @@ public class MyLinkedList {
     }
     //删除所有值为key的节点
     public void removeAllKey(int key){
-
         Node prev = this.head;
         Node cur = this.head.next;
         while(cur != null) {
@@ -123,7 +122,6 @@ public class MyLinkedList {
         if(this.head.data == key) {
             this.head = this.head.next;
         }
-
     }
 
 
