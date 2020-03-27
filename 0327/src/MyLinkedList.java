@@ -6,6 +6,7 @@ class Node {
         this.data = data;
     }
 }
+
 public class MyLinkedList {
     public Node head;
     public MyLinkedList() {
@@ -51,9 +52,7 @@ public class MyLinkedList {
             addLast(data);
             return;
         }
-        //1、找到
         Node prev = findIndex(index);
-        //2、
         Node node = new Node(data);
         node.next = prev.next;
         prev.next = node;
