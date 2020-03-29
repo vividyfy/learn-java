@@ -126,4 +126,17 @@ public class MyLinkedList {
             cur = cur.next;
         }
     }
+    public Node mergeTwoLists(Node headA, Node headB) {
+        Node newHead = new Node(-1);
+        Node tmp =  newHead;
+        //1、当两个单链表都不为空的时候
+        while (headA!=null && headB!=null) {
+            if ()
+        }
+
+        //2、第一步完成后   其中一个单链表不为空  一个为空
+
+        return newHead.next;
+    }
+
 }
