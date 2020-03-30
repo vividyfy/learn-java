@@ -12,7 +12,7 @@ public class DoubleLinkedList {
     //头插法    
     public void addFirst(int data) {
         ListNode node = new ListNode(data);
-        if (this.head==null && this.last==null) {
+        if (this.head==null) {
             this.head = node;
             this.last = null;
             return;
