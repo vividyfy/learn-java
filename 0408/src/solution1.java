@@ -1,11 +1,18 @@
 public class solution1 {
-    public int getDecimalValue(ListNode head) {
-        ListNode cur = head;
-        int a = 0;
-        while(cur!=null) {
-            a = a*2+cur.val;
-            cur = cur.next;
+    public ListNode removeDuplicateNodes(ListNode head) {
+        ListNode slow = head;
+        while(slow!=null) {
+            ListNode fast =slow;
+            while(fast.next!=null){
+                if (fast.next.val == slow.val) {
+                    fast.next = fast.next.next;
+                }else {
+                    fast = fast.next;
+                }
+            }
+            slow = slow.next;
+
         }
-        return a;
+        return head;
     }
 }
