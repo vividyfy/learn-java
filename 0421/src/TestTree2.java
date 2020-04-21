@@ -17,6 +17,6 @@ public class TestTree2 {
         if (s==null) {
             return false;
         }
-        //return isSameTree(s,t) || isSameTree(s.left,t) ||isSameTree(s.right,t);
+        return isSameTree(s,t) || isSameTree(s.left,t) ||isSameTree(s.right,t);
     }
 }
