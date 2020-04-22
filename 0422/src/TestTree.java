@@ -3,6 +3,10 @@ public class TestTree {
         public char val;
         public Node right;
         public Node left;
+
+        public Node(char val) {
+            this.val = val;
+        }
     }
     public int maxDepth(Node root) {
         if (root==null) {
