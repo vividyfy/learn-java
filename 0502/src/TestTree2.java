@@ -1,5 +1,5 @@
 public class TestTree2 {
-    
+
     //1.使用静态变量
     public static int leafSize = 0;
     public static void size(TestDemo.Node root) {
