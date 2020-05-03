@@ -54,6 +54,7 @@ public class TestInterview {
         return result;
     }
 
+    //检查两棵树是否相同
     public boolean isSameTree(Node p, Node q) {
         if (p==null&&q==null) {
             return true;
