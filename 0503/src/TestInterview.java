@@ -65,6 +65,7 @@ public class TestInterview {
         return (p.val==q.val) && isSameTree(p.left,q.left) && isSameTree(p.right,q.right);
     }
 
+    //检查一棵树是否是另一棵树的子树
     public boolean isSubtree(Node s, Node t) {
         if (s==null){
             return false;
@@ -74,6 +75,7 @@ public class TestInterview {
         isSubtree(s.right,t);
     }
 
+    //
     public int maxDepth(Node root) {
         if (root==null) {
             return 0;
