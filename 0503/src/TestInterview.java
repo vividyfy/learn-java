@@ -102,7 +102,7 @@ public class TestInterview {
         return (leftDepth-rightDepth<=1&&leftDepth-rightDepth>=-1) && isBalanced(root.left) && isBalanced(root.right);
     }
 
-    //
+    //对称二叉树
     public boolean isSymmetric(Node root) {
         if (root==null) {
             return true;
