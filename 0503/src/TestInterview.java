@@ -89,6 +89,7 @@ public class TestInterview {
         return 1 + (Math.max(leftDepth, rightDepth));
     }
 
+    //判断一棵树是否平衡
     public boolean isBalanced(Node root) {
         if (root==null) {
             return true;
@@ -101,6 +102,7 @@ public class TestInterview {
         return (leftDepth-rightDepth<=1&&leftDepth-rightDepth>=-1) && isBalanced(root.left) && isBalanced(root.right);
     }
 
+    //
     public boolean isSymmetric(Node root) {
         if (root==null) {
             return true;
