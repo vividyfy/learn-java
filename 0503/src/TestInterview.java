@@ -1,6 +1,8 @@
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class TestInterview {
     static class Node {
@@ -118,6 +120,26 @@ public class TestInterview {
             return false;
         }
         return (left.val==right.val) && isMirror(left.left,right.right) && isMirror(left.right,right.left);
+    }
+
+
+    //层序遍历
+    public static void levelOrder(Node root) {
+        if (root==null) {
+            return;
+        }
+        Queue<Node> queue = new LinkedList<>();
+        queue.offer(root);
+        while(!queue.isEmpty()) {
+            Node cur = queue.poll();
+            System.out.println(cur.val+"  ");
+            if (cur.left!=null) {
+                queue.offer(cur.left);
+            }
+            if (cur.right!=null) {
+                queue.offer(cur.right);
+            }
+        }
     }
 
 
