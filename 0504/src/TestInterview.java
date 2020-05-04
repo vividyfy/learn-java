@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-//层序遍历
+//判断二叉树是不是完全二叉树
 public class TestInterview {
     static class Node {
         public char val;
