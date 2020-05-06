@@ -18,7 +18,6 @@ public class TestInterview3 {
         stringBuilder.deleteCharAt(stringBuilder.length()-1);
         return stringBuilder.toString();
     }
-
     private void helper(TreeNode root) {
         if (root==null) {
             return;
