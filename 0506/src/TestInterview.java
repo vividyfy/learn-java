@@ -14,7 +14,6 @@ public class TestInterview {
         return buildTreeHelper(preorder,inorder,0,inorder.length);
 
     }
-
     private TreeNode buildTreeHelper(int[] preorder, int[] inorder, int inorderLeft, int inorderRight) {
         if (inorderLeft>=inorderRight) {
             return null;
