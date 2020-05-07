@@ -10,7 +10,6 @@ public class TestInterview2 {
             this.val = val;
         }
     }
-
     public void postOrder(TreeNode root) {
         if (root==null) {
             return;
