@@ -43,7 +43,7 @@ public class MergeSort {
             cur2++;
             index++;
         }
-        for (int i=0;i<right-left;i++) {
+        for (int i=0;i<index;i++) {
             array[left+i] = tmp[i];
         }
     }
@@ -51,7 +51,7 @@ public class MergeSort {
     public static void main(String[] args) {
         int[] array = {};
         //System.out.println(array.length);
-        int[] arr = {1,7,2};
+        int[] arr = {1,7,2,8,9,3};
         mergeSort(arr);
         System.out.println(Arrays.toString(arr));
     }
