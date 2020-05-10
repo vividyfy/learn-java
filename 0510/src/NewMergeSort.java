@@ -15,4 +15,34 @@ public class NewMergeSort {
             }
         }
     }
+    private static void merge(int[] array, int left, int mid, int right) {
+        int cur1 = left;
+        int cur2 = mid;
+        int[] tmp = new int[right-left];
+        int index = 0;
+        while (cur1<mid&&cur2<right) {
+            if (array[cur1] <= array[cur2]) {
+                tmp[index] = array[cur1];
+                cur1++;
+                index++;
+            } else {
+                tmp[index] = array[cur2];
+                cur2++;
+                index++;
+            }
+        }
+        while (cur1<mid) {
+            tmp[index] = array[cur1];
+            cur1++;
+            index++;
+        }
+        while (cur2<right) {
+            tmp[index] = array[cur2];
+            cur2++;
+            index++;
+        }
+        for (int i=0;i<index;i++) {
+            array[left+i] = tmp[i];
+        }
+    }
 }
