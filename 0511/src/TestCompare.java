@@ -24,6 +24,9 @@ class Card {
         if (o==null) {
             return false;
         }
+        if (!(o instanceof Card)) {
+            return false;
+        }
         Card other = (Card) o;
         return this.rank.equals(other.rank);
     }
