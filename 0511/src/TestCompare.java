@@ -39,8 +39,6 @@ public class TestCompare {
         Card card3 = card1;
         System.out.println(card1==card2);//比较身份，地址
         System.out.println(card1==card3);
-//        System.out.println(card1);
-//        System.out.println(card2);
         System.out.println(card1.equals(card2));
         System.out.println(card1.equals(card3));
 
