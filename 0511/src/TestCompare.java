@@ -18,7 +18,14 @@ class Card {
 
     @Override
     public boolean equals(Object o) {
-        return super.equals(o);
+        if (this==o) {
+            return true;
+        }
+        if (o==null) {
+            return false;
+        }
+        Card other = (Card) o;
+        return this.rank.equals(other.rank);
     }
 }
 
