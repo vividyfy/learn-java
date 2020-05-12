@@ -1,5 +1,5 @@
 
-class Card {
+class Card implements Comparable<Card> {
     String rank;
     String suit;
 
@@ -29,6 +29,11 @@ class Card {
         }
         Card other = (Card) o;
         return this.rank.equals(other.rank);
+    }
+
+    @Override
+    public int compareTo(Card card) {
+        return 0;
     }
 }
 
