@@ -20,4 +20,14 @@ public class TestInterview {
         return 0;
     }
 
+
+    //方法二
+    public int singleNumber2(int[] nums) {
+        int ret = 0;
+        for (int x : nums) {
+            ret ^= x;
+        }
+        return ret;
+    }
+
 }
