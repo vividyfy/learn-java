@@ -25,8 +25,11 @@ public class MapSetInterview {
 
         Test t2 = copy(t);
         Test t3 = deepCopy(t);
-        System.out.println(t);
-        System.out.println(t2);
+
+        t.data.add(4);
+        System.out.println(t);//1 2 3 4
+        System.out.println(t2);//1 2 3 4
+        System.out.println(t3);//1 2 3
     }
 
 
