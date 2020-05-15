@@ -6,7 +6,7 @@ public class solution2 {
         int count = 0;
         for (int i = 0; i < J.length(); i++) {
             char t = J.charAt(i);
-            if (S.contains(t+" ")) {
+            if (S.contains(t+"")) {
                 count++;
             }
         }
