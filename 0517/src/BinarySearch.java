@@ -91,6 +91,20 @@ public class BinarySearch {
                 parent.right = cur.left;
             }
 
+        } else {
+            Node scapeGoat = cur.right;
+            Node scapeGoatParent = cur;
+            while (scapeGoat.left != null) {
+                scapeGoatParent = scapeGoat;
+                scapeGoat = scapeGoat.left;
+            }
+            cur.key = scapeGoat.key;
+            cur.value = scapeGoat.value;
+            if (scapeGoat==scapeGoatParent.left) {
+                scapeGoatParent.left = scapeGoat.right;
+            } else {
+                scapeGoatParent.right = scapeGoat.right;
+            }
         }
     }
 
