@@ -54,7 +54,44 @@ public class BinarySearch {
         return newNode;
     }
     public void remove(int key) {
-        
+        Node cur = root;
+        Node parent = null;
+        while (cur!=null) {
+            if (key < cur.key) {
+                parent = cur;
+                cur = cur.left;
+            } else if (key > cur.key) {
+                parent = cur;
+                cur = cur.right;
+            } else {
+                removeNode(cur, parent);
+                return;
+            }
+        }
+        return;
+    }
+
+    private void removeNode(Node cur, Node parent) {
+        if (cur.left == null) {
+            if (cur == root) {
+                root = cur.right;
+            } else if (cur == parent.left) {
+                parent.left = cur.right;
+            } else if (cur == parent) {
+                parent.right = cur.right;
+            }
+        } else if (cur.right==null) {
+            if (cur == root) {
+                root = cur.left;
+
+            } else if (cur == parent.left) {
+                parent.left = cur.left;
+
+            } else if (cur == parent.right) {
+                parent.right = cur.left;
+            }
+
+        }
     }
 
 
