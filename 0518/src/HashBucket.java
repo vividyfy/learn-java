@@ -32,7 +32,7 @@ public class HashBucket {
     private void resize() {
         Node[] newArray = new Node[array.length * 2];
         for (int i = 0; i < array.length; i++) {
-            Node next;
+            Node next = null;
             for (Node cur = array[i]; cur != null; cur = next) {
                 next = cur.next;
                 int index = cur.key % newArray.length;
