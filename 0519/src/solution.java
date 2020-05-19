@@ -9,22 +9,23 @@ public class solution {
         int i = 0;
         while (i < stop2) {
             if (nums[i]==0) {
-                swap(nums[i],nums[stop1]);
+                swap(nums, i, stop1);
                 stop1++;
                 i++;
             } else if (nums[i]==1) {
                 i++;
             } else {
-                swap(nums[stop2],nums[i]);
+                swap(nums, i, stop2);
                 stop2--;
-                i++;
             }
         }
     }
 
-    private void swap(int num, int num1) {
-        int tmp = num;
-        num = num1;
-        num1 = tmp;
+    private void swap(int[] nums, int i, int j) {
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
     }
+
+
 }
