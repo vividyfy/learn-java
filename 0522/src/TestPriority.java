@@ -3,8 +3,6 @@ import java.util.PriorityQueue;
 //标准库中的优先队列默认是小堆
 public class TestPriority {
     static class MyComp implements Comparator<Integer> {
-
-
         @Override
         public int compare(Integer o1, Integer o2) {
             return o1 - o2;
