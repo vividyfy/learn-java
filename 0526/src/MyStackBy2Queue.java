@@ -33,7 +33,7 @@ public class MyStackBy2Queue {
         if (empty()) {
             return null;
         }
-        while (A.size() >= 1) {
+        while (A.size() > 1) {
             int front = A.poll();
             B.offer(front);
         }
