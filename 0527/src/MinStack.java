@@ -1,8 +1,10 @@
 import java.util.Stack;
 
 public class MinStack {
+    
     private Stack<Integer> A = new Stack<>();
     private Stack<Integer> B = new Stack<>();
+
     public void push(int x) {
         A.push(x);
         if (B.isEmpty()) {
