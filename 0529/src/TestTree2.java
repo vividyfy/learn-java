@@ -80,7 +80,32 @@ public class TestTree2 {
         return getLevelSize(root.left, k-1) + getLevelSize(root.right, k-1);
     }
 
-    public static Node 
+    public static Node find2(Node root, char val) {
+        if (root == null) {
+            return null;
+        }
+        if (root.val == val) {
+            return root;
+        }
+        Node result = find2(root.left, val);
+        if (result != null) {
+            return result;
+        }
+        return find2(root.right, val);
+    }
+
+    static Node result = null;
+    public static void find(Node root, char val) {
+        if (root == null) {
+            return;
+        }
+        if (root.val == val) {
+            result =  root;
+            return;
+        }
+        find(root.left, val);
+        find(root.right,val);
+    }
 
     public static void main(String[] args) {
         Node root = buildTree();
