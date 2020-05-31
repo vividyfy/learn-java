@@ -70,4 +70,38 @@ public class TestTree {
         }
     }
 
+    private void removeNode(Node cur, Node parent) {
+        if (cur.left == null) {
+            if (cur == root) {
+                root = cur.right;
+            } else if (cur == parent.left) {
+                parent.left = cur.right;
+            } else if (cur == parent.right) {
+                parent.right = cur.right;
+            }
+        } else if (cur.right == null) {
+            if (cur == root) {
+                root = cur.left;
+            } else if (cur == parent.left) {
+                parent.left = cur.left;
+            } else if (cur == parent.right) {
+                parent.right = cur.left;
+            }
+        }else {
+            Node SG = cur.right;
+            Node SGParent = cur;
+            while (SG != null) {
+                SGParent = SG;
+                SG = SG.left;
+            }
+            cur.value = SG.value;
+            cur.key = SG.key;
+            if (SG == SGParent.left) {
+                SGParent.left = SG.right;
+            } else {
+                SGParent.right = SG.right;
+            }
+        }
+    }
+
 }
