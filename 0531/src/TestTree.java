@@ -51,6 +51,23 @@ public class TestTree {
             prev.right = newNode;
         }
         return newNode;
-
     }
+
+    public void remove(int key) {
+        Node cur = root;
+        Node parent = null;
+        while (cur != null) {
+            if (key < cur.key) {
+                parent = cur;
+                cur = cur.left;
+            } else if (key > cur.key) {
+                parent = cur;
+                cur = cur.right;
+            } else {
+                removeNode(cur,parent);
+                return;
+            }
+        }
+    }
+
 }
