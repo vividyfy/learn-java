@@ -12,7 +12,6 @@ public class Parenthesis {
                 stack.push(tmp);
                 continue;
             }
-
             if (stack.isEmpty()) {
                 return false;
             }
