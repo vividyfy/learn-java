@@ -10,7 +10,7 @@ public class Main {
             System.out.println(-1);
         } else if (x == 0) {
             System.out.println(n / 8);
-        } else if ((x != 0) && ((x % 6 == 0))) {
+        } else if (x % 6 == 0) {
             System.out.println(y + x / 6);
         } else if (y != 0 && (x + 8 ) % 6 ==0) {
             System.out.println(y - 1 + (x + 8) / 6);
