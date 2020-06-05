@@ -11,7 +11,6 @@ public class Solution {
         }
         stack1.push(node);
     }
-
     public int pop() {
         while (!stack1.isEmpty()) {
             Integer cur = stack1.pop();
