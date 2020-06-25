@@ -1,0 +1,31 @@
+import java.util.*;
+
+class ListNode {
+    int val;
+    ListNode next = null;
+
+    ListNode(int val) {
+        this.val = val;
+    }
+}
+public class Plus {
+    public ListNode plusAB(ListNode a, ListNode b) {
+        ListNode newHead = new ListNode(0);
+        int sum = 0;
+        ListNode tmp = newHead;
+        while (a.next !=null || b.next !=null || sum != 0) {
+            if (a != null) {
+                sum += a.val;
+                a = a.next;
+            }
+            if (b != null) {
+                sum += b.val;
+                b = b.next;
+            }
+            tmp.next = new ListNode(sum % 10);
+            sum = sum / 10;
+            tmp = tmp.next;
+        }
+        return newHead.next;
+    }
+}
