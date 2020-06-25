@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String str1 = scanner.nextLine();
+        String str2 = scanner.nextLine();
+        char[] ch = str2.toCharArray();
+        int count = 0;
+        for (int i = 0; i < ch.length; i++) {
+            if (!str1.contains(ch[i]+"")) {
+                count++;
+            }
+        }
+        int b = str1.length() - str2.length();
+        if (count == 0) {
+            System.out.println("Yes " + b);
+        } else {
+            System.out.println("No " + count);
+        }
+
+    }
+}
