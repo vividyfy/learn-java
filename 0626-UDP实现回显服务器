@@ -1,0 +1,58 @@
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.SocketException;
+
+class UdpEchoServer {
+    //对于一个服务器程序来说，核心流程分为两步
+    //1、进行初始化操作（实例化Socket）
+    //2、进入主循环（死循环），接收并处理请求
+    //  2.1读取数据并解析
+    //  2.2根据请求计算响应
+    //  2.3把响应结果写回到客户端
+    public DatagramSocket socket = null;
+
+    public UdpEchoServer(int port) throws SocketException {
+        socket = new DatagramSocket(port);
+        //new这个socket对象的时候
+        // 就会让当前的socket对象和一个ip地址以及一个端口号关联起来（绑定端口）
+        //未来客户端就按照这个ip+端口来访问服务器
+        //构造socket的时候如果没写ip，默认是0.0.0.0  特殊IP -- 会关联到这个主机所有网卡的IP
+    }
+
+    public void start() throws IOException {
+        System.out.println("服务器启动");
+        while (true) {
+            //读取数据并解析
+            //DatagramPacket 是upd发送接收数据的基本单位
+            DatagramPacket requestPacket = new DatagramPacket(new byte[4096], 4096);
+            socket.receive(requestPacket);
+            String request = new String(requestPacket.getData(), 0,
+                    requestPacket.getLength()).trim();
+            //用户实际发送的数据可能远远小于4096
+            //此处getLength得到的长度就是4096，trim可以去掉不必要的空白字符
+            //根据请求计算响应
+            String response = process(request);
+            //把响应结果写回到客户端
+            DatagramPacket responsePacket = new DatagramPacket(response.getBytes(),
+                    response.getBytes().length, requestPacket.getSocketAddress());
+            //requestPacket.getSocketAddress()
+            // 这个包要发给谁（目的IP和端口），此处的地址就是客户端的地址和端口
+            //这两个信息包含在requestPacket内部
+            socket.send(responsePacket);
+            //打印一条请求日志
+            System.out.printf("[%s:%d] req: %s; resp: %s\n",responsePacket.getAddress()
+                    .toString(), requestPacket.getPort(), request,response);
+        }
+    }
+
+    public String process (String request) {
+        //此处是一个echo server，请求内容是啥，响应内容就是啥
+        return request;
+    }
+
+    public static void main(String[] args) throws IOException {
+        UdpEchoServer updEchoServer = new UdpEchoServer(9090);
+        updEchoServer.start();
+    }
+}
