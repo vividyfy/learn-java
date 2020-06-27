@@ -1,0 +1,42 @@
+import java.io.*;
+import java.net.Socket;
+import java.util.Scanner;
+
+public class TcpEchoClient {
+    //1、启动客户端（不绑定端口），建立连接
+    //2、进入循环
+    // 2.1读取用户输入内容
+    // 2.2构造一个请求发送给服务器
+    // 2.3读取服务器响应数据
+    // 2.4把响应数据显示到界面上
+    private Socket socket = null;
+
+    public TcpEchoClient(String serverIp, int serverPort) throws IOException {
+        //实例化过程就是在建立连接
+        socket = new Socket(serverIp, serverPort);
+    }
+    public void start() {
+        System.out.println("客户端启动");
+        Scanner scanner = new Scanner(System.in);
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))) {
+            while (true) {
+                //1、读取用户输入内容
+                System.out.println("->");
+                String request = scanner.nextLine();
+                if ("exit".equals(request)) {
+                    break;
+                }
+                //2、构造请求并发送给服务器
+                //\n与readLine相对应
+                bufferedWriter.write(request+"\n");
+                //3、读取响应数据
+                String response = bufferedReader.readLine();
+                //4、把响应数据显示到界面上
+                System.out.println(response);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
