@@ -1,0 +1,50 @@
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+        double sum = 0;
+        double sum2 = 0;
+        int i = 0;
+        while (n > 0) {
+            if (scanner.hasNext()) {
+                int a = scanner.nextInt();
+                double count = 0;
+                if (a>=90) {
+                    count = 4.0;
+                } else if (a >= 85) {
+                    count = 3.7;
+                } else  if (a >= 82) {
+                    count = 3.3;
+                } else if (a >= 78) {
+                    count = 3.0;
+                } else if (a >= 75) {
+                    count = 2.7;
+                } else if (a >= 72) {
+                    count = 2.3;
+                } else if (a >= 68) {
+                    count = 2.0;
+                } else if (a >= 64) {
+                    count = 1.5;
+                } else if (a >= 60) {
+                    count = 1.0;
+                } else {
+                    count = 0;
+                }
+                sum += arr[i] * count;
+                sum2 += arr[i];
+                i++;
+            }
+            n--;
+        }
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        double d = sum / sum2;
+        System.out.println(decimalFormat.format(d));
+    }
+}
