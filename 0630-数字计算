@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNext()) {
+            int n = scanner.nextInt();
+            int b = n * n;
+            int a = count(n);
+            int[] arr = new int[a];
+            for (int i = 0; i < arr.length; i++) {
+                arr[i] = n % 10;
+                n = n / 10;
+            }
+            int sum = 0;
+            int sum2 = 0;
+            for (int i = 0; i < arr.length; i++) {
+                sum += arr[i];
+            }
+            int c = count(b);
+            for (int i = 0; i < c; i++) {
+                sum2 += b % 10;
+                b = b / 10;
+            }
+            System.out.println(sum+" "+sum2);
+        }
+    }
+
+    private static int count(int n) {
+        if (n == 0) {
+            return 0;
+        }
+        return 1 + count(n / 10);
+    }
+}
