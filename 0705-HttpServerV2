@@ -1,0 +1,75 @@
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class HttpServerV2 {
+    //1、修改代码格式
+    //2、解析url中的包含的参数
+    //3、演示cookie工作流程
+    private ServerSocket serverSocket = null;
+    public HttpServerV2(int port) throws IOException {
+        serverSocket = new ServerSocket(port);
+    }
+    public void start() throws IOException {
+        System.out.println("服务器启动");
+
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        while (true) {
+            Socket clienSocket = serverSocket.accept();
+            executorService.execute(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        process(clienSocket);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+    }
+
+    private void process(Socket clienSocket) throws IOException {
+
+        try {
+            //1、读取请求并解析
+            HttpRequest request = HttpRequest.build(clienSocket.getInputStream());
+            System.out.println("request: "+request);
+            HttpResponse response = HttpResponse.build(clienSocket.getOutputStream());
+            //2、根据请求计算响应
+            response.setHeader("content-type","text/html");
+            if (request.getUrl().startsWith("/hello")) {
+                response.setStatus(200);
+                response.setMessage("OK");
+                response.writeBody("<h1>hello</h1>");
+            } else if (request.getUrl().startsWith("/calc")) {
+                String aStr =  request.getParameters("a");
+                String bStr = request.getParameters("b");
+                int a = Integer.parseInt(aStr);
+                int b = Integer.parseInt(bStr);
+                int result = a + b;
+                response.setStatus(200);
+                response.setMessage("OK");
+                response.writeBody("<h1>result = "+result+"</h1>");
+            } else {
+                response.setStatus(200);
+                response.setMessage("OK");
+                response.writeBody("<h1>default</h1>");
+            }
+
+            //3、把响应写回到客户端
+            response.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            clienSocket.close();
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        HttpServerV2 serverV2 = new HttpServerV2(9090);
+        serverV2.start();
+    }
+}
