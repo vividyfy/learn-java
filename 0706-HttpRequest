@@ -1,0 +1,91 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.ServerSocket;
+import java.util.HashMap;
+import java.util.Map;
+
+public class HttpRequest {
+    private String method;
+    private String url;
+    private String version;
+    private Map<String,String> headers = new HashMap<>();
+    //url中的参数和body中的参数都放到parameter hash表中
+    private Map<String,String> parameters = new HashMap<>();
+    private Map<String,String> cookies = new HashMap<>();
+    private String body;
+
+    public static HttpRequest build(InputStream inputStream) throws IOException {
+        HttpRequest request = new HttpRequest();
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+        //1、处理首行
+        String firstLine = bufferedReader.readLine();
+        String[] firstLineTokens = firstLine.split(" ");
+        request.method = firstLineTokens[0];
+        request.url = firstLineTokens[1];
+        request.version = firstLineTokens[2];
+        int pos = request.url.indexOf("?");
+        if (pos != -1) {
+            String queryString = request.url.substring(pos+1);
+            parseKV(queryString,request.parameters);
+        }
+        String line = "";
+        while ((line = bufferedReader.readLine())!=null && line.length() != 0) {
+            String[] headerTokens = line.split(": ");
+            request.headers.put(headerTokens[0],headerTokens[1]);
+        }
+        String cookie = request.headers.get("cookie");
+        if (cookie != null) {
+            parseCookie(cookie,request.cookies);
+        }
+        if ("POST".equalsIgnoreCase(request.method) || "GET".equalsIgnoreCase(request.method)) {
+        //这两个方法认为需要处理body
+            //此处长度单位是字节
+            int contentLength = Integer.parseInt(request.headers.get("content-Length"));
+            //例如contentlength长度为100字节，下面创建的字符数组char相当于200个字节
+            char[] buffer = new char[contentLength];
+            int len = bufferedReader.read(buffer);
+            request.body = new String(buffer,0,len);
+            //body中的格式形如 user=yfy&password=123
+            parseKV(request.body, request.parameters);
+        }
+        return request;
+    }
+
+    private static void parseCookie(String cookie, Map<String, String> cookies) {
+        String[] cookieTokes = cookie.split("; ");
+        for (String kv : cookieTokes) {
+            String[] result = kv.split("=");
+            cookies.put(result[0],result[1]);
+        }
+    }
+
+    private static void parseKV(String input, Map<String, String> output) {
+        String[]kvTokens = input.split("&");
+            for (String kv : kvTokens) {
+                String[] result = kv.split("=");
+                output.put(result[0],result[1]);
+            }
+    }
+
+    public String getMethod() {
+        return method;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public String getHeader(String key) {
+        return headers.get(key);
+    }
+
+    public String getParameters(String key){
+        return parameters.get(key);
+    }
+}
