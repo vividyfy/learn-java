@@ -1,0 +1,82 @@
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        scanner.nextLine();
+        int a = 0;
+        int b = 0;
+        int c = n;
+        int countAC = 0;
+        int countAJ = 0;
+        int countAB = 0;
+        int countBC = 0;
+        int countBJ = 0;
+        int countBB = 0;
+        while (n>0) {
+            if (scanner.hasNext()) {
+                String str = scanner.nextLine()+" ";
+                String[] s1 = str.split(" ");
+
+                if (s1[0].equals(s1[1])) {
+                    b++;
+                }
+                if (s1[0].equals("C") && s1[1].equals("J")) {
+                    a++;
+                    countAC++;
+                }
+                if (s1[0].equals("J") && s1[1].equals("B")) {
+                    a++;
+                    countAJ++;
+                }
+                if (s1[0].equals("B") && s1[1].equals("C")) {
+                    a++;
+                    countAB++;
+                }
+                if (s1[0].equals("C") && s1[1].equals("B")) {
+                    countBB++;
+                }
+                if (s1[0].equals("B") && s1[1].equals("J")) {
+                    countBJ++;
+                }
+                if (s1[0].equals("J") && s1[1].equals("C")) {
+                    countBC++;
+                }
+            }
+            n--;
+        }
+        n = c - a - b;
+        System.out.println(a+" "+b+" "+n);
+        System.out.println(n+" "+b+" "+a);
+        int max = Math.max(countAB,Math.max(countAC, countAJ));
+        if (countAB==countAC && countAB > countAJ) {
+            System.out.print("B"+" ");
+        } else if (countAC==countAJ && countAJ > countAB) {
+            System.out.print("C"+" ");
+        } else if (max == countAB) {
+            System.out.print("B"+" ");
+        } else if (max == countAC) {
+            System.out.print("C"+" ");
+        } else {
+            System.out.print("J"+" ");
+        }
+        int max2 = Math.max(countBB,Math.min(countBC,countBJ));
+        if (n == 0) {
+            System.out.print("B");
+        }else if (countBB==countBC && countBB > countBJ) {
+            System.out.print("B");
+        } else if (countBC==countBJ && countBJ > countBB) {
+            System.out.print("C");
+        } else if (max2 == countBB) {
+            System.out.print("B");
+        } else if (max2 == countBC) {
+            System.out.print("C");
+        } else {
+            System.out.print("J");
+        }
+    }
+}
