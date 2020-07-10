@@ -1,0 +1,13 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int sum = 1;
+        for (int j = 0; j < 30; j++) {
+            sum+=Math.pow(2,j);
+        }
+        sum = sum - 1;
+        System.out.println(300+" "+sum);
+    }
+}
