@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNext()) {
+            int l = scanner.nextInt();
+            int n = scanner.nextInt();
+            int m = scanner.nextInt();
+            int[] arr1 = {31,28,31,30,31,30,31,31,30,31,30,31};
+            int[] arr2 = {31,29,31,30,31,30,31,31,30,31,30,31};
+            boolean flg =  judgeLeapYear(l);
+            int count = 0;
+            if (flg) {
+                for (int i = 0; i < n-1; i++) {
+                    count += arr2[i];
+                }
+                count += m;
+            } else {
+                for (int i = 0; i < n-1; i++) {
+                    count += arr1[i];
+                }
+                count += m;
+            }
+            System.out.println(count);
+        }
+    }
+
+    private static boolean judgeLeapYear(int l) {
+        if (l % 400 == 0 || (l % 4 == 0 && l % 100 != 0)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
