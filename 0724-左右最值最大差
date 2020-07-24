@@ -1,0 +1,7 @@
+public int findMaxGap(int[] A, int n) {
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < A.length; i++) {
+            if (max < A[i]) max = A[i];
+        }
+        return max - Math.min(A[0], A[n - 1]);
+    }
