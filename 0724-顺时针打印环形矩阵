@@ -1,0 +1,50 @@
+
+public class solution {
+        public int[]    clockwisePrint(int[][] mat,int n,int m) {
+            int[] a =new int[m*n];
+            if( mat ==null)
+                return a;
+            int i =0;
+            int j =0;
+            int k =0;
+            int startX =0;
+            int startY =0;
+            int endX = n -1;
+            int endY = m -1;
+            while( startX <=    endX && startY <= endY ){
+                if ( startX == endX ){
+                    for( ; j <= endY ;j++,k++){
+                        a[k] =    mat[startX][j];
+                    }
+                    return a;
+                }
+                if( startY ==    endY ){
+                    for( ; i    <= endX ; i++,k++){
+                        a[k] =    mat[i][startY];
+                    }
+                    return a;
+                }
+                for( ; j <    endY ; j++,k++){
+                    a[k] =    mat[i][j];
+                }
+                
+                for( ; i <    endX ; i++,k++){
+                    a[k] =    mat[i][j];
+                }
+                for( ; j >    startX ; j--,k++){
+                    a[k] =    mat[i][j];
+                }
+                for( ; i >    startY ; i--,k++){
+                    a[k] =    mat[i][j];
+                }
+                i++;
+                j++;
+                startX++;
+                startY++;
+                endX--;
+                endY--;
+            }
+            return a;
+        }
+    }
+
