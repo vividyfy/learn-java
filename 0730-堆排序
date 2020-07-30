@@ -1,0 +1,36 @@
+public static void heapSort(int[] array) {
+  createHeap(array);
+  for (int i = 0; i < array.length - 1; i++) {
+  swap(array, 0, array.length - 1);
+  shiftDown(array, array.length - i - 1, 0);
+}
+private void swap(int[] array, int i, int j) {
+  int t = array[i];
+  array[i] = array[j];
+  array[j] = t;
+} 
+private void createHeap(int[] array) {
+  for (int i = (array.length - 1) / 2; i >= 0; i--) {
+    shiftDown(array, array.length, i);
+  }
+} 
+public static void shiftDown(int[] array, int size, int index) {
+  int left = 2 * index + 1;
+  while (left < size) {
+    int max = left;
+    int right = 2 * index + 2;
+    if (right < size) {
+      if (array[right] > array[left]) {
+        max = right;
+      }
+    } 
+    if (array[index] >= array[max]) {
+      break;
+    } 
+    int t = array[index];
+    array[index] = array[max];
+    array[max] = t;
+    index = max;
+    left = 2 * index + 1;
+  }
+}
