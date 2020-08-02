@@ -1,0 +1,10 @@
+public static void insertSort(int[] array) {
+        for (int i = 1; i < array.length; i++) {
+            int v = array[i]; // 无序区间的第一个数
+            int j = i - 1;
+            for (; j >= 0 && array[j] > v; j--) {
+                array[j + 1] = array[j];
+            } a
+            rray[j + 1] = v;
+        }
+    }
