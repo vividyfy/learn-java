@@ -1,0 +1,10 @@
+private static void insertSortGap(int[] array, int gap) {
+        for (int i = 1; i < array.length; i++) {
+        int v = array[i];
+        int j = i - gap;
+        for (; j >= 0 && array[j] > v; j -= gap) {
+            array[j + gap] = array[j];
+        } 
+        array[j + gap] = v;
+        }
+    }
