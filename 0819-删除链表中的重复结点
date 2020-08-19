@@ -1,0 +1,26 @@
+public class Solution {
+    public ListNode deleteDuplication(ListNode pHead) {
+        if (pHead == null || pHead.next == null) {
+            return pHead;
+        }
+
+        ListNode head = new ListNode(-1); 
+        ListNode trail = head;
+
+        while (pHead != null) {
+            ListNode node = pHead.next;
+            boolean flag = false;
+            while (node != null && pHead.val == node.val) {
+                node = node.next;
+                flag = true;
+            }
+            if (!flag) {
+                trail.next = pHead;
+                trail = trail.next;
+            }
+            pHead = node;
+        }
+        trail.next = null; // 1->2->3->3->3
+        return head.next;
+    }
+}
