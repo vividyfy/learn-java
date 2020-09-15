@@ -1,0 +1,36 @@
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+class Main2 {
+    public static int firstMissingPositive (int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        Arrays.sort(nums);
+        int n = nums[nums.length-1];
+        int[] arr =  new int[n+1];
+        int j = 1;
+        for (int i = 0; i <= n; i++) {
+            arr[i] = j;
+            j++;
+        }
+        int m = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] <= 0) {
+                nums[i] = 1;
+            }
+        }
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0)  set.add(nums[i]);
+        }
+
+        for (int i = 0; i <= set.size(); i++) {
+            int k = arr[i];
+            if (!set.contains(k)) {
+                m = arr[i];
+                break;
+            }
+        }
+        return m;
+    }
+}
