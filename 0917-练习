@@ -1,0 +1,86 @@
+import java.util.*;
+
+class Main2 {
+    public static int firstMissingPositive(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        Arrays.sort(nums);
+        int n = nums[nums.length - 1];
+        int[] arr = new int[n + 1];
+        int j = 1;
+        for (int i = 0; i <= n; i++) {
+            arr[i] = j;
+            j++;
+        }
+        int m = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] <= 0) {
+                nums[i] = 1;
+            }
+        }
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) set.add(nums[i]);
+        }
+
+        for (int i = 0; i <= set.size(); i++) {
+            int k = arr[i];
+            if (!set.contains(k)) {
+                m = arr[i];
+                break;
+            }
+        }
+        return m;
+    }
+
+    public static void main(String[] args) {
+//        char ch = '9';
+////        //System.out.println(ch + 1);
+////        String str = "acda";
+////        System.out.println(lengthOfLongestSubstring(str));
+        System.out.println(deleteNum(654));
+    }
+
+    public static int lengthOfLongestSubstring (String str) {
+        // write code here
+
+        if (str == null) {
+            return 0;
+        }
+        int tmp = -1,  max = 0;
+        Set<Character> set = new HashSet<>();
+        char[] ch = str.toCharArray();
+        for (int i = 0; i < ch.length; i++) {
+            if (i != 0) {
+                set.remove(ch[i-1]);
+            }
+            while (tmp+1 < ch.length && !set.contains(ch[tmp+1])) {
+                set.add(ch[tmp+1]);
+                tmp++;
+            }
+            if (max > tmp-i+1) {
+                max = max;
+            } else {
+                max = tmp-i+1;
+            }
+
+        }
+        return max;
+    }
+
+    public static int deleteNum (int n) {
+        // write code here
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            list.add(i);
+        }
+        while (list.size()!=1) {
+            int a = list.get(list.size()%2);
+            list.remove(n%list.size());
+        }
+        int m = 0;
+        for (int i = 0; i < list.size(); i++) {
+            m = list.get(i);
+        }
+        return m;
+    }
+}
